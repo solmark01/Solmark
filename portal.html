@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Solmark · Portal de clientes</title>
+<meta name="description" content="Accedé a tu app de Barbería, Roti SM, Centro de Estética o Gimnasio. Funciones, instructivos, instalación y soporte en un solo lugar.">
+<meta name="theme-color" content="#0a5fc4">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:title" content="Solmark · Portal de clientes">
+<meta property="og:description" content="Cuatro apps para tu negocio. Un solo lugar para entrar, aprender a usarlas y resolver tus dudas.">
+<meta property="og:image" content="icons/icon-512.png">
+<style>
+:root{
+  --bg:#f5f9fd;--bg2:#edf5fc;--card:#fff;--card2:#fbfdff;
+  --ink:#10263b;--ink2:#213d57;--muted:#5c7285;--line:#dce8f2;
+  --brand:#0a5fc4;--brand2:#0b8fb0;--teal:#0b7f74;--wa:#25d366;
+  --shadow:0 24px 60px -34px rgba(13,45,80,.4);
+  --shadow-sm:0 12px 30px -22px rgba(13,45,80,.45);
+  --radius:22px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+::selection{background:#cfe7ff;color:#082a4d}
+.container{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+.skip{position:fixed;top:-60px;left:12px;z-index:100;background:#fff;color:var(--brand);padding:10px 16px;border-radius:10px;box-shadow:var(--shadow);font-weight:700;transition:top .2s}
+.skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid rgba(10,95,196,.35);outline-offset:2px;border-radius:8px}
+
+/* Header */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;height:68px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+.site-header.scrolled{border-color:var(--line);box-shadow:0 12px 34px -30px rgba(13,45,80,.55)}
+.header-inner{height:68px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto;min-width:0}
+.brand img{width:38px;height:38px;border-radius:11px;box-shadow:0 10px 22px -14px rgba(10,95,196,.8)}
+.brand-name{display:flex;flex-direction:column;line-height:1.15}
+.brand-name b{font-size:19px;letter-spacing:-.035em}
+.brand-name span{font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav a{padding:8px 11px;border-radius:9px;font-size:13.5px;font-weight:650;color:var(--muted);transition:background .15s,color .15s}
+.main-nav a:hover{background:#eef6fd;color:var(--ink)}
+.header-cta{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border-radius:11px;background:var(--brand);color:#fff;font-size:13.5px;font-weight:750;box-shadow:0 12px 24px -16px rgba(10,95,196,.9);transition:transform .15s,box-shadow .15s}
+.header-cta:hover{transform:translateY(-1px);box-shadow:0 16px 28px -16px rgba(10,95,196,.9)}
+.menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:10px;cursor:pointer}
+.menu-btn svg{width:20px;height:20px}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;z-index:49;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 24px 40px -30px rgba(13,45,80,.5);padding:10px 16px 18px}
+.mobile-nav.open{display:block}
+.mobile-nav a{display:block;padding:11px 12px;border-radius:10px;font-weight:650;color:var(--ink2);font-size:15px}
+.mobile-nav a:hover{background:#f2f8fd}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:66px 0 58px;background:
+  radial-gradient(900px 500px at 85% 0%,#dff0ff 0%,transparent 60%),
+  radial-gradient(700px 480px at 0% 20%,#e4f7f4 0%,transparent 62%),
+  linear-gradient(180deg,#fbfdff 0%,var(--bg) 100%)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(10,95,196,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,95,196,.05) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 75% 70% at 55% 35%,#000 20%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 75% 70% at 55% 35%,#000 20%,transparent 78%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:52px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--brand);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;box-shadow:var(--shadow-sm)}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(11,127,116,.13);animation:pulse 2.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(11,127,116,.13)}50%{box-shadow:0 0 0 7px rgba(11,127,116,.05)}}
+.hero h1{margin:18px 0 0;font-size:clamp(2.35rem,5.2vw,4.05rem);line-height:1.02;letter-spacing:-.055em;text-wrap:balance}
+.hl{background:linear-gradient(100deg,var(--brand) 5%,var(--brand2) 55%,var(--teal) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin:20px 0 0;max-width:580px;font-size:17px;line-height:1.65;color:var(--muted)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:12px;padding:12px 18px;font-size:14.5px;font-weight:750;cursor:pointer;transition:transform .16s,box-shadow .16s,background .16s,border-color .16s;white-space:nowrap}
+.btn svg{flex:none}
+.btn-primary{background:linear-gradient(135deg,var(--brand),#0b7fd0);color:#fff;box-shadow:0 16px 30px -18px rgba(10,95,196,.95)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 34px -18px rgba(10,95,196,.95)}
+.btn-soft{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-soft:hover{border-color:#bcd5e8;transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 15px;margin-top:26px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.hero-meta svg{width:14px;height:14px;color:var(--teal)}
+
+.hero-visual{position:relative;min-height:410px;display:grid;place-items:center}
+.blob{position:absolute;inset:9% 6%;border-radius:50%;background:conic-gradient(from 190deg,#9ed8ff,#8fe3d6,#c9e2ff,#9ed8ff);filter:blur(58px);opacity:.55;animation:spin 26s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit{position:relative;width:min(430px,100%);aspect-ratio:1;border-radius:50%;border:1px dashed rgba(10,95,196,.2);display:grid;place-items:center}
+.orbit::before{content:"";position:absolute;inset:7%;border-radius:50%;border:1px solid rgba(10,95,196,.08)}
+.orbit::after{content:"";position:absolute;inset:18%;border-radius:50%;background:rgba(255,255,255,.4);filter:blur(1px)}
+.app-tiles{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:78%}
+.tile{--a:#2f6f62;--as:#e3efec;position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px 15px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 22px 44px -30px rgba(13,45,80,.5);transition:transform .2s,box-shadow .2s,border-color .2s}
+.tile:hover{transform:translateY(-4px);border-color:var(--a);box-shadow:0 28px 50px -28px rgba(13,45,80,.45)}
+.tile img{width:50px;height:50px;border-radius:14px}
+.tile b{font-size:13px;letter-spacing:-.01em}
+.tile small{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;color:var(--a);letter-spacing:.02em;text-transform:uppercase}
+.tile small svg{width:12px;height:12px}
+.float-badge{position:absolute;z-index:2;display:flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 16px 30px -20px rgba(13,45,80,.6);font-size:11.5px;font-weight:800;letter-spacing:.02em;color:var(--ink2);white-space:nowrap}
+.float-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+.float-badge.one{top:5%;right:-2%}
+.float-badge.two{bottom:6%;left:-3%;color:var(--brand)}
+.float-badge.two svg{width:14px;height:14px;color:var(--teal)}
+
+/* Sections */
+section{padding:66px 0;scroll-margin-top:86px}
+.section-head{max-width:730px;margin-bottom:32px}
+.kicker{display:block;font-size:11px;font-weight:850;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin-bottom:10px}
+.section-head h2{margin:0;font-size:clamp(1.75rem,3.6vw,2.55rem);line-height:1.1;letter-spacing:-.045em;text-wrap:balance}
+.section-head p{margin:14px 0 0;font-size:15.5px;line-height:1.65;color:var(--muted)}
+
+/* Apps */
+.apps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.app-card{--a:#2f6f62;--a2:#4f9b8a;--as:#e3efec;position:relative;display:flex;flex-direction:column;gap:13px;padding:24px;background:linear-gradient(180deg,#fff,var(--card2));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 14px 40px -38px rgba(13,45,80,.45);transition:transform .2s,box-shadow .2s,border-color .2s}
+.app-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--a),var(--a2))}
+.app-card:hover{transform:translateY(-4px);border-color:#c7ddec;box-shadow:0 26px 50px -34px rgba(13,45,80,.42)}
+.app-card-top{display:flex;align-items:center;gap:14px}
+.app-icon{width:58px;height:58px;border-radius:16px;border:1px solid #eef5fb;box-shadow:0 12px 26px -18px var(--a);flex:none}
+.app-kicker{display:block;font-size:9.5px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;color:var(--a);margin-bottom:2px}
+.app-card h3{margin:0;font-size:23px;line-height:1.15;letter-spacing:-.035em}
+.tagline{margin:0;font-size:14.5px;font-weight:700;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;padding:4px 9px;border-radius:999px;background:var(--as);color:var(--a);font-size:11px;font-weight:800;letter-spacing:.01em}
+.desc{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.app-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:5px}
+.btn-app{background:var(--a);color:#fff;box-shadow:0 12px 22px -16px var(--a)}
+.btn-app:hover{transform:translateY(-1px);box-shadow:0 16px 26px -16px var(--a)}
+.btn-line{background:#fff;border-color:var(--line);color:var(--ink2)}
+.btn-line:hover{border-color:#bfd7e9;background:#f8fbff}
+.btn-sm{padding:10px 14px;font-size:13px}
+
+/* Value strip */
+.values{padding-top:0}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.value{display:flex;flex-direction:column;gap:10px;padding:19px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.value .ico{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#eaf4fd;color:var(--brand)}
+.value .ico svg{width:19px;height:19px}
+.value b{font-size:14px;letter-spacing:-.015em}
+.value p{margin:-2px 0 0;font-size:12.5px;line-height:1.55;color:var(--muted)}
+
+/* Guides */
+.guide-section{background:linear-gradient(180deg,var(--bg) 0%,#eef6fc 18%,#eef6fc 82%,var(--bg) 100%)}
+.guide-wrap{background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
+.guide-tabs{display:flex;gap:6px;padding:12px;background:#f2f8fd;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.guide-tabs::-webkit-scrollbar{display:none}
+.gtab{--a:#2f6f62;--as:#e3efec;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid transparent;border-radius:11px;background:transparent;color:var(--muted);font-size:13.5px;font-weight:750;white-space:nowrap;cursor:pointer;transition:background .15s,color .15s,border-color .15s,box-shadow .15s}
+.gtab img{width:23px;height:23px;border-radius:6px}
+.gtab:hover{background:#e8f3fc;color:var(--ink2)}
+.gtab[aria-selected="true"]{background:#fff;border-color:var(--line);color:var(--a);box-shadow:inset 0 -2px 0 var(--a),0 8px 20px -18px rgba(13,45,80,.55)}
+.guide-panel{padding:30px;animation:fadeUp .28s ease both}
+@keyframes fadeUp{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+.guide-head{display:flex;align-items:flex-start;gap:16px;padding-bottom:23px;border-bottom:1px dashed var(--line);margin-bottom:24px}
+.guide-head .app-icon{width:66px;height:66px;border-radius:18px}
+.guide-title{min-width:0;flex:1}
+.guide-title h3{margin:0;font-size:27px;line-height:1.1;letter-spacing:-.04em}
+.guide-title p{margin:7px 0 0;font-size:14px;line-height:1.6;color:var(--muted);max-width:660px}
+.guide-head>.btn{flex:none;margin-top:6px}
+.guide-body{display:grid;grid-template-columns:1.08fr .92fr;gap:30px}
+.guide-body>div{display:flex;flex-direction:column;min-width:0}
+.mini-title{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:11px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.mini-title::after{content:"";height:1px;flex:1;background:var(--line)}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:9px;flex:1}
+.feat{display:flex;gap:10px;padding:12px;background:#fbfdff;border:1px solid var(--line);border-radius:13px}
+.feat .fi{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:10px;background:var(--as);font-size:17px;line-height:1}
+.feat b{display:block;font-size:13px;line-height:1.35;letter-spacing:-.01em}
+.feat span{display:block;margin-top:3px;font-size:12px;line-height:1.45;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:step}
+.steps li{position:relative;padding:0 0 14px 37px;font-size:13.5px;line-height:1.55;color:var(--ink2)}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:-1px;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--as);color:var(--a);font-size:11.5px;font-weight:850}
+.steps li::after{content:"";position:absolute;left:12px;top:27px;bottom:4px;width:1px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.daily{margin-top:18px;padding:15px;background:#f7fbfe;border:1px solid var(--line);border-radius:14px}
+.daily h5{margin:0 0 9px;font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:var(--a)}
+.daily ul{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.daily li{position:relative;padding-left:20px;font-size:12.5px;line-height:1.5;color:var(--ink2)}
+.daily li::before{content:"✓";position:absolute;left:0;top:0;font-weight:900;color:var(--a)}
+.tip{display:flex;gap:9px;margin-top:12px;padding:12px 13px;background:#fff8e8;border:1px solid #f2e2bd;border-radius:12px;color:#72551a}
+.tip .tip-ico{flex:none;font-size:15px;line-height:1.4}
+.tip p{margin:0;font-size:12px;line-height:1.55}
+.tip b{color:#5f4613}
+
+/* Install */
+.install{position:relative;overflow:hidden;padding:38px;border-radius:26px;background:linear-gradient(135deg,#0a5fc4 0%,#0b76bd 55%,#0b8fb0 100%);color:#fff;box-shadow:0 30px 70px -40px rgba(10,95,196,.8)}
+.install::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-130px;top:-200px;background:rgba(255,255,255,.12)}
+.install::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;left:-120px;bottom:-160px;background:rgba(255,255,255,.08)}
+.install .kicker{color:#bfe6ff}
+.install h2{margin:0;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.1;letter-spacing:-.045em;max-width:760px}
+.install .lead{margin:12px 0 0;max-width:700px;font-size:14.5px;line-height:1.65;color:#dbeeff}
+.install-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.install-card{padding:19px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);border-radius:16px;backdrop-filter:blur(8px)}
+.install-card h3{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:14.5px;letter-spacing:-.01em}
+.install-card h3 span{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.16);font-size:14px}
+.install-card ol{list-style:none;margin:0;padding:0;counter-reset:istep;display:grid;gap:8px}
+.install-card li{position:relative;padding-left:24px;font-size:12.5px;line-height:1.5;color:#eaf6ff}
+.install-card li::before{counter-increment:istep;content:counter(istep);position:absolute;left:0;top:1px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.2);font-size:9.5px;font-weight:850}
+.install-note{position:relative;z-index:1;display:flex;gap:9px;margin-top:18px;padding:12px 14px;background:rgba(4,32,63,.22);border:1px solid rgba(255,255,255,.14);border-radius:12px;font-size:12px;line-height:1.55;color:#e7f4ff}
+.install-note b{color:#fff}
+.install-note svg{flex:none;width:17px;height:17px;margin-top:1px;color:#a9e2ff}
+
+/* Activation */
+.activate-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.activate-copy .section-head{margin-bottom:24px}
+.activate-steps{list-style:none;margin:0;padding:0;counter-reset:astep;display:grid;gap:13px}
+.activate-steps li{position:relative;padding-left:42px;font-size:14px;line-height:1.55;color:var(--ink2)}
+.activate-steps li::before{counter-increment:astep;content:counter(astep);position:absolute;left:0;top:-2px;display:grid;place-items:center;width:29px;height:29px;border-radius:10px;background:#eaf4fd;color:var(--brand);font-size:12.5px;font-weight:850;border:1px solid #d6e9f9}
+.activate-steps b{color:var(--ink)}
+.key-card{position:relative;overflow:hidden;padding:25px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.key-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand2),var(--teal))}
+.key-card h3{margin:0;font-size:15px;letter-spacing:-.01em}
+.key-card .key-label{margin:16px 0 6px;font-size:9.5px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.key-code{padding:14px;border:1px dashed #b7d6ea;border-radius:12px;background:#f4fafe;color:#2e5472;font:700 13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+.key-note{margin:11px 0 16px;font-size:12px;line-height:1.55;color:var(--muted)}
+.key-card .btn{width:100%}
+.key-secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:11px;font-weight:650;color:var(--muted)}
+.key-secure svg{width:13px;height:13px;color:var(--teal)}
+
+/* FAQ */
+.faq{max-width:880px;margin:0 auto;display:grid;gap:9px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 18px;transition:border-color .15s,box-shadow .15s}
+.faq details[open]{border-color:#c9deee;box-shadow:var(--shadow-sm)}
+.faq summary{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;cursor:pointer;list-style:none;font-size:14.5px;font-weight:700;letter-spacing:-.015em;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#eef6fd;color:var(--brand);font-size:18px;font-weight:500;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{content:"−";transform:rotate(180deg)}
+.faq details p{margin:0;padding:0 32px 17px 0;font-size:13.5px;line-height:1.65;color:var(--muted)}
+.faq details p b{color:var(--ink2)}
+
+/* Contact */
+.contact{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:36px 38px;border-radius:26px;background:linear-gradient(135deg,#0b1f33,#123a5b);color:#fff;box-shadow:0 30px 70px -45px rgba(7,26,45,.9);position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;right:-90px;top:-150px;background:radial-gradient(circle,rgba(11,143,176,.35),transparent 70%)}
+.contact .kicker{color:#7fd6ff}
+.contact h2{margin:0;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.1;letter-spacing:-.04em}
+.contact p{margin:10px 0 0;max-width:620px;font-size:14px;line-height:1.65;color:#b7cee1}
+.contact-actions{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.btn-wa{background:var(--wa);color:#06301a;box-shadow:0 16px 30px -18px rgba(37,211,102,.9)}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 20px 34px -18px rgba(37,211,102,.9)}
+.contact-note{font-size:11px;font-weight:650;color:#94b6cf}
+
+/* Footer */
+.site-footer{padding:36px 0 30px;border-top:1px solid var(--line);margin-top:12px}
+.footer-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap}
+.footer-brand{max-width:330px}
+.footer-brand .brand{margin-bottom:12px}
+.footer-brand p{margin:0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.footer-cols{display:flex;gap:52px;flex-wrap:wrap}
+.footer-col{display:flex;flex-direction:column;gap:7px;min-width:110px}
+.footer-col b{margin-bottom:3px;font-size:10px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.footer-col a,.footer-col span{font-size:12.5px;color:var(--muted)}
+.footer-col a:hover{color:var(--brand)}
+.footer-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.footer-bottom b{color:var(--ink2)}
+
+/* Floating WhatsApp */
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:40;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--wa);color:#06301a;box-shadow:0 18px 34px -16px rgba(37,211,102,.9);transition:transform .18s,box-shadow .18s}
+.wa-float:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 22px 38px -16px rgba(37,211,102,.9)}
+.wa-float svg{width:26px;height:26px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1000px){
+  .main-nav{display:none}
+  .menu-btn{display:inline-flex}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero .lead{max-width:640px}
+  .hero-visual{min-height:370px;order:2}
+  .orbit{width:min(390px,100%)}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .guide-body{grid-template-columns:1fr;gap:26px}
+  .install-grid{grid-template-columns:1fr}
+  .activate-grid{grid-template-columns:1fr;gap:26px}
+}
+@media(min-width:1001px){
+  .mobile-nav{display:none!important}
+}
+@media(max-width:760px){
+  .container{width:min(1180px,calc(100% - 28px))}
+  .header-cta{display:none}
+  section{padding:52px 0}
+  .hero{padding:42px 0 44px}
+  .hero h1{font-size:clamp(2.15rem,9vw,3rem)}
+  .hero .lead{font-size:15.5px}
+  .apps-grid{grid-template-columns:1fr}
+  .guide-panel{padding:21px}
+  .guide-head{flex-wrap:wrap}
+  .guide-head .app-icon{width:56px;height:56px;border-radius:15px}
+  .guide-title h3{font-size:23px}
+  .guide-head>.btn{width:100%;margin-top:2px}
+  .feat-grid{grid-template-columns:1fr}
+  .install{padding:26px}
+  .contact{padding:26px}
+  .footer-cols{gap:30px}
+  .float-badge.one{right:0}
+  .float-badge.two{left:0}
+  .wa-float{right:14px;bottom:14px}
+}
+@media(max-width:460px){
+  .values-grid{grid-template-columns:1fr}
+  .app-card{padding:20px}
+  .guide-tabs{padding:9px}
+  .gtab{font-size:12.5px;padding:8px 10px}
+  .gtab img{width:20px;height:20px}
+  .hero-visual{min-height:330px}
+  .app-tiles{width:90%;gap:10px}
+  .tile{padding:14px 8px 12px;border-radius:16px}
+  .tile img{width:42px;height:42px;border-radius:11px}
+  .tile b{font-size:11.5px}
+  .float-badge{font-size:10px;padding:7px 10px}
+  .float-badge.one{top:1%}
+  .float-badge.two{bottom:1%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+@media print{
+  .site-header,.mobile-nav,.wa-float,.hero-visual,.guide-tabs,.contact-actions,.skip{display:none!important}
+  body{background:#fff;color:#000}
+  .reveal{opacity:1;transform:none}
+  .guide-panel{display:block!important;break-inside:avoid}
+  section,.hero{padding:18px 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#apps">Saltar al contenido</a>
+
+<header class="site-header" id="topbar">
+  <div class="container header-inner">
+    <a class="brand" href="#">
+      <img src="icons/icon-192.png" alt="" width="38" height="38">
+      <span class="brand-name"><b>Solmark</b><span>Portal de clientes</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="#apps">Aplicaciones</a>
+      <a href="#guia">Funciones</a>
+      <a href="#instalar">Instalar</a>
+      <a href="#activar">Claves</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="header-cta" href="#apps">
+      Abrir una app
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil">
+  <a href="#apps">Aplicaciones</a>
+  <a href="#guia">Funciones e instructivos</a>
+  <a href="#instalar">Instalar en el celular</a>
+  <a href="#activar">Activar o renovar clave</a>
+  <a href="#faq">Preguntas frecuentes</a>
+  <a href="#contacto">Soporte por WhatsApp</a>
+</nav>
+
+<main>
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><i></i> Portal de clientes · Solmark</span>
+        <h1 id="heroTitle">Cuatro apps.<br><span class="hl">Un solo lugar.</span></h1>
+        <p class="lead">Barbería, Roti SM, Centro de Estética y Gimnasio. Entrá a cada app, mirá todas sus funciones y seguí el instructivo paso a paso, sin buscar en mil lados.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#apps">
+            Elegir mi app
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-soft" href="#guia">
+            Ver instructivos
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acceso directo</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Funciona en el celular</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Respaldo incluido</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Soporte por WhatsApp</span>
+        </div>
+      </div>
+      <div class="hero-visual" role="group" aria-label="Accesos directos a las aplicaciones">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="orbit">
+          <div class="app-tiles">
+            <a class="tile" href="https://solmark01.github.io/Barberia/" target="_blank" rel="noopener" style="--a:#2f6f62;--as:#e3efec">
+              <img src="icons/app-barberia.png" alt="" width="50" height="50">
+              <b>Barbería</b>
+              <small>Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></small>
+            </a>
+            <a class="tile" href="https://solmark01.github.io/Rotiseria/" target="_blank" rel="noopener" style="--a:#c0713a;--as:#faeede">
+              <img src="icons/app-rotiseria.png" alt="" width="50" height="50">
+              <b>Roti SM</b>
+              <small>Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></small>
+            </a>
+            <a class="tile" href="https://solmark01.github.io/Centro-Estetica/" target="_blank" rel="noopener" style="--a:#9c4f72;--as:#f6e4ec">
+              <img src="icons/app-estetica.png" alt="" width="50" height="50">
+              <b>Estética</b>
+              <small>Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></small>
+            </a>
+            <a class="tile" href="https://solmark01.github.io/Gimanasio/" target="_blank" rel="noopener" style="--a:#2f6f62;--as:#e3efec">
+              <img src="icons/app-gimnasio.png" alt="" width="50" height="50">
+              <b>Gimnasio</b>
+              <small>Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></small>
+            </a>
+          </div>
+        </div>
+        <span class="float-badge one"><span class="dot"></span> 4 apps · 1 portal</span>
+        <span class="float-badge two"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Datos en tu teléfono</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="apps" aria-labelledby="appsTitle">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Las aplicaciones</span>
+        <h2 id="appsTitle">Elegí la app de tu negocio</h2>
+        <p>Cada app es independiente, se instala en tu celular y guarda los datos en el dispositivo. Tocá <b>Abrir app</b> para entrar o <b>Ver instructivo</b> para aprender a usarla.</p>
+      </div>
+      <div class="apps-grid">
+        <article class="app-card reveal" style="--a:#2f6f62;--a2:#4f9b8a;--as:#e3efec;--d:0ms">
+          <div class="app-card-top">
+            <img class="app-icon" src="icons/app-barberia.png" alt="Ícono de la app Barbería" width="58" height="58" loading="lazy">
+            <div>
+              <span class="app-kicker">Barberías y peluquerías</span>
+              <h3>Barbería</h3>
+            </div>
+          </div>
+          <p class="tagline">Caja, turnos y comisiones sin planillas.</p>
+          <div class="chips"><span class="chip">Caja diaria</span><span class="chip">Turnos</span><span class="chip">Puntos</span><span class="chip">Equipo</span></div>
+          <p class="desc">Cobrá el día, reservá turnos, fidelizá con puntos y liquidá a tus barberos desde el celular.</p>
+          <div class="app-actions">
+            <a class="btn btn-app btn-sm" href="https://solmark01.github.io/Barberia/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Barbería</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+            <button class="btn btn-line btn-sm" type="button" data-guide="barberia">Ver instructivo</button>
+          </div>
+        </article>
+
+        <article class="app-card reveal" style="--a:#c0713a;--a2:#d99a63;--as:#faeede;--d:70ms">
+          <div class="app-card-top">
+            <img class="app-icon" src="icons/app-rotiseria.png" alt="Ícono de la app Roti SM" width="58" height="58" loading="lazy">
+            <div>
+              <span class="app-kicker">Rotisería y viandas</span>
+              <h3>Roti SM</h3>
+            </div>
+          </div>
+          <p class="tagline">Pedidos, costos y utilidad bajo control.</p>
+          <div class="chips"><span class="chip">Órdenes</span><span class="chip">Hoja del chef</span><span class="chip">Costos</span><span class="chip">Puntos</span></div>
+          <p class="desc">Tomá órdenes, enviá el resumen al chef, controlá la cuenta de cada cliente y mirá tu margen real.</p>
+          <div class="app-actions">
+            <a class="btn btn-app btn-sm" href="https://solmark01.github.io/Rotiseria/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Roti SM</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+            <button class="btn btn-line btn-sm" type="button" data-guide="rotiseria">Ver instructivo</button>
+          </div>
+        </article>
+
+        <article class="app-card reveal" style="--a:#9c4f72;--a2:#c07898;--as:#f6e4ec;--d:140ms">
+          <div class="app-card-top">
+            <img class="app-icon" src="icons/app-estetica.png" alt="Ícono de la app Centro de Estética" width="58" height="58" loading="lazy">
+            <div>
+              <span class="app-kicker">Estética y bienestar</span>
+              <h3>Centro de Estética</h3>
+            </div>
+          </div>
+          <p class="tagline">Agenda, packs y fichas en un solo lugar.</p>
+          <div class="chips"><span class="chip">Agenda</span><span class="chip">Packs</span><span class="chip">Fichas</span><span class="chip">Caja</span></div>
+          <p class="desc">Organizá turnos por profesional, guardá la ficha de cada clienta, vendé packs y cerrá la caja.</p>
+          <div class="app-actions">
+            <a class="btn btn-app btn-sm" href="https://solmark01.github.io/Centro-Estetica/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Centro de Estética</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+            <button class="btn btn-line btn-sm" type="button" data-guide="estetica">Ver instructivo</button>
+          </div>
+        </article>
+
+        <article class="app-card reveal" style="--a:#2f6f62;--a2:#4f9b8a;--as:#e3efec;--d:210ms">
+          <div class="app-card-top">
+            <img class="app-icon" src="icons/app-gimnasio.png" alt="Ícono de la app Gimnasio" width="58" height="58" loading="lazy">
+            <div>
+              <span class="app-kicker">Gimnasios y entrenamiento</span>
+              <h3>Gimnasio</h3>
+            </div>
+          </div>
+          <p class="tagline">Alumnos, cuotas, clases y gastos al día.</p>
+          <div class="chips"><span class="chip">Cuotas</span><span class="chip">Asistencia</span><span class="chip">Profes</span><span class="chip">Gastos</span></div>
+          <p class="desc">Cobrá cuotas, marcá asistencia, liquidá profesores y seguí los gastos sin perder el orden.</p>
+          <div class="app-actions">
+            <a class="btn btn-app btn-sm" href="https://solmark01.github.io/Gimanasio/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Gimnasio</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+            <button class="btn btn-line btn-sm" type="button" data-guide="gimnasio">Ver instructivo</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="values" aria-label="Beneficios de las apps Solmark">
+    <div class="container values-grid">
+      <div class="value reveal">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span>
+        <b>Hechas para el celular</b>
+        <p>Se agregan a la pantalla de inicio y se usan a pantalla completa, como cualquier app.</p>
+      </div>
+      <div class="value reveal" style="--d:60ms">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M22 2v6h-6"/></svg></span>
+        <b>Funcionan sin conexión</b>
+        <p>Después de la primera carga, la app abre sin internet y guarda los datos en tu teléfono.</p>
+      </div>
+      <div class="value reveal" style="--d:120ms">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span>
+        <b>Copia de seguridad</b>
+        <p>Descargá todo en un archivo y restauralo en otro teléfono cuando lo necesites.</p>
+      </div>
+      <div class="value reveal" style="--d:180ms">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 0 1 18 0"/><path d="M21 16a3 3 0 0 1-3 3h-1a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4v3Z"/><path d="M3 16a3 3 0 0 0 3 3h1a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H3v3Z"/></svg></span>
+        <b>Soporte directo</b>
+        <p>Te ayudamos por WhatsApp con la instalación, la puesta en marcha y la licencia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-section" id="guia" aria-labelledby="guideTitle">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Funciones e instructivos</span>
+        <h2 id="guideTitle">Todo lo que podés hacer, paso a paso</h2>
+        <p>Elegí una app para ver sus funciones, cómo configurarla desde cero y los atajos para el uso diario.</p>
+      </div>
+
+      <div class="guide-wrap reveal">
+        <div class="guide-tabs" role="tablist" aria-label="Elegir aplicación">
+          <button class="gtab" type="button" role="tab" id="tab-barberia" aria-controls="panel-barberia" aria-selected="true" data-app="barberia" style="--a:#2f6f62;--as:#e3efec">
+            <img src="icons/app-barberia.png" alt="" width="23" height="23">Barbería
+          </button>
+          <button class="gtab" type="button" role="tab" id="tab-rotiseria" aria-controls="panel-rotiseria" aria-selected="false" tabindex="-1" data-app="rotiseria" style="--a:#c0713a;--as:#faeede">
+            <img src="icons/app-rotiseria.png" alt="" width="23" height="23">Roti SM
+          </button>
+          <button class="gtab" type="button" role="tab" id="tab-estetica" aria-controls="panel-estetica" aria-selected="false" tabindex="-1" data-app="estetica" style="--a:#9c4f72;--as:#f6e4ec">
+            <img src="icons/app-estetica.png" alt="" width="23" height="23">Estética
+          </button>
+          <button class="gtab" type="button" role="tab" id="tab-gimnasio" aria-controls="panel-gimnasio" aria-selected="false" tabindex="-1" data-app="gimnasio" style="--a:#2f6f62;--as:#e3efec">
+            <img src="icons/app-gimnasio.png" alt="" width="23" height="23">Gimnasio
+          </button>
+        </div>
+
+        <!-- BARBERÍA -->
+        <div class="guide-panel" id="panel-barberia" role="tabpanel" aria-labelledby="tab-barberia" style="--a:#2f6f62;--a2:#4f9b8a;--as:#e3efec">
+          <div class="guide-head">
+            <img class="app-icon" src="icons/app-barberia.png" alt="Ícono de Barbería" width="66" height="66">
+            <div class="guide-title">
+              <span class="app-kicker">Barberías y peluquerías</span>
+              <h3>Barbería</h3>
+              <p>La app para barberías y peluquerías: cobrá el día, reservá turnos, sumá puntos y liquidá a tu equipo desde el celular.</p>
+            </div>
+            <a class="btn btn-app" href="https://solmark01.github.io/Barberia/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Barbería</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <div class="guide-body">
+            <div>
+              <h4 class="mini-title">Funciones incluidas</h4>
+              <div class="feat-grid">
+                <div class="feat"><span class="fi">💵</span><div><b>Caja y cobros</b><span>Cortes, productos y saldos pendientes. Totales de hoy, semana y mes.</span></div></div>
+                <div class="feat"><span class="fi">📅</span><div><b>Turnos</b><span>Calendario mensual y reserva por cliente, servicio y barbero, con aviso por WhatsApp.</span></div></div>
+                <div class="feat"><span class="fi">👤</span><div><b>Fichas de clientes</b><span>Teléfono, dirección, cumpleaños, cuenta corriente e historial en una sola ficha.</span></div></div>
+                <div class="feat"><span class="fi">⭐</span><div><b>Puntos y premios</b><span>Un punto por corte, meta configurable y canje del premio al completarla.</span></div></div>
+                <div class="feat"><span class="fi">👥</span><div><b>Equipo y fichadas</b><span>Entrada y salida, horas trabajadas, ventas por barbero y liquidación.</span></div></div>
+                <div class="feat"><span class="fi">📊</span><div><b>Informe de ventas</b><span>Ventas por período, medios de pago y exportación a Excel o CSV.</span></div></div>
+                <div class="feat"><span class="fi">🏷️</span><div><b>Lista de precios</b><span>Cortes y productos con precio; marcá cuáles suman punto y cuáles no.</span></div></div>
+                <div class="feat"><span class="fi">🔐</span><div><b>Datos y respaldo</b><span>Copia completa, restauración en otro teléfono y clave de renovación.</span></div></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="mini-title">Instructivo paso a paso</h4>
+              <ol class="steps">
+                <li>Abrí la app y agregala a la pantalla de inicio del celular.</li>
+                <li>En <b>Datos → Lista de precios</b>, cargá tus cortes, productos y valores.</li>
+                <li>En <b>Equipo</b>, sumá a tus barberos con su comisión y horario.</li>
+                <li>En <b>Clientes</b>, cargá a cada cliente con teléfono y cumpleaños. También podés crearlo desde una venta.</li>
+                <li>En <b>Caja</b>, tocá <b>Nuevo corte</b> para registrar la primera venta. Si queda a deber, usá <b>Cobrar saldo pendiente</b>.</li>
+                <li>En <b>Turnos</b>, elegí el día y tocá <b>Reservar turno</b>.</li>
+                <li>En <b>Puntos</b>, definí la meta y el premio. En <b>Datos</b>, descargá una copia de seguridad.</li>
+              </ol>
+              <div class="daily">
+                <h5>En el día a día</h5>
+                <ul>
+                  <li>Cobrar en Caja al terminar cada cliente.</li>
+                  <li>Revisar los turnos del día siguiente.</li>
+                  <li>Fichar entrada y salida del equipo.</li>
+                  <li>Canjear puntos cuando el cliente complete la meta.</li>
+                </ul>
+              </div>
+              <div class="tip"><span class="tip-ico">💡</span><p><b>Tip:</b> cargá el precio de cada corte y producto. Al cobrar solo elegís el servicio y el total se calcula solo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROTI -->
+        <div class="guide-panel" id="panel-rotiseria" role="tabpanel" aria-labelledby="tab-rotiseria" style="--a:#c0713a;--a2:#d99a63;--as:#faeede" hidden>
+          <div class="guide-head">
+            <img class="app-icon" src="icons/app-rotiseria.png" alt="Ícono de Roti SM" width="66" height="66">
+            <div class="guide-title">
+              <span class="app-kicker">Rotisería y viandas</span>
+              <h3>Roti SM</h3>
+              <p>La app para rotiserías y viandas: tomá órdenes, enviá la hoja del chef, controlá la cuenta de cada cliente y mirá tu margen real.</p>
+            </div>
+            <a class="btn btn-app" href="https://solmark01.github.io/Rotiseria/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Roti SM</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <div class="guide-body">
+            <div>
+              <h4 class="mini-title">Funciones incluidas</h4>
+              <div class="feat-grid">
+                <div class="feat"><span class="fi">🧾</span><div><b>Órdenes del día</b><span>Pedidos con varios platos, entrega o retiro, notas y estados pendiente, listo o cancelado.</span></div></div>
+                <div class="feat"><span class="fi">👨‍🍳</span><div><b>Hoja del chef</b><span>Resumen del día en PDF o por WhatsApp para cocinar sin errores.</span></div></div>
+                <div class="feat"><span class="fi">🍽️</span><div><b>Platos y costos</b><span>Precio, costo, margen y venta por peso. Buscador y edición al instante.</span></div></div>
+                <div class="feat"><span class="fi">👤</span><div><b>Clientes y cuenta</b><span>Etiquetas, búsqueda, deudas, pagos y estado de cuenta listo para enviar.</span></div></div>
+                <div class="feat"><span class="fi">⭐</span><div><b>Puntos y premios</b><span>Puntos automáticos por compra, ranking de clientes y canje de premios.</span></div></div>
+                <div class="feat"><span class="fi">💳</span><div><b>Pagos y comprobantes</b><span>Efectivo o transferencia, con comprobante en PDF o imagen para el cliente.</span></div></div>
+                <div class="feat"><span class="fi">📈</span><div><b>Informes</b><span>Ventas, costos y utilidad por día, semana o mes; top de platos y clientes.</span></div></div>
+                <div class="feat"><span class="fi">🔐</span><div><b>Marca y respaldo</b><span>Logo, nombre, copia de seguridad y licencia en Config.</span></div></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="mini-title">Instructivo paso a paso</h4>
+              <ol class="steps">
+                <li>Abrí la app y agregala a la pantalla de inicio del celular.</li>
+                <li>En <b>Config</b>, poné el nombre y el logo de tu negocio.</li>
+                <li>En <b>Platos</b>, cargá cada plato con precio, costo y categoría. Si vendés por peso, activá esa opción.</li>
+                <li>En <b>Clientes</b>, cargá tus contactos o importalos desde la agenda del teléfono.</li>
+                <li>En <b>Órdenes</b>, tocá <b>+ Nueva orden</b>: elegí cliente, platos, entrega y notas.</li>
+                <li>Al despachar, cambiá el estado a <b>Listo</b> y generá el comprobante para el cliente.</li>
+                <li>En <b>Informe</b>, revisá ventas, costos y utilidad del día, la semana o el mes.</li>
+                <li>En <b>Config → Datos</b>, descargá una copia de seguridad y activá tu licencia.</li>
+              </ol>
+              <div class="daily">
+                <h5>En el día a día</h5>
+                <ul>
+                  <li>Cargar los pedidos a medida que entran.</li>
+                  <li>Enviar la orden del día al chef.</li>
+                  <li>Marcar listo al despachar y generar el comprobante.</li>
+                  <li>Registrar pagos y revisar clientes con deuda.</li>
+                </ul>
+              </div>
+              <div class="tip"><span class="tip-ico">💡</span><p><b>Tip:</b> cargá el costo de cada plato. El informe calcula la utilidad real, no solo lo que facturaste.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESTÉTICA -->
+        <div class="guide-panel" id="panel-estetica" role="tabpanel" aria-labelledby="tab-estetica" style="--a:#9c4f72;--a2:#c07898;--as:#f6e4ec" hidden>
+          <div class="guide-head">
+            <img class="app-icon" src="icons/app-estetica.png" alt="Ícono de Centro de Estética" width="66" height="66">
+            <div class="guide-title">
+              <span class="app-kicker">Estética y bienestar</span>
+              <h3>Centro de Estética</h3>
+              <p>La app para centros de estética: organizá turnos por profesional, guardá la ficha de cada clienta, vendé packs y cerrá la caja.</p>
+            </div>
+            <a class="btn btn-app" href="https://solmark01.github.io/Centro-Estetica/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Centro de Estética</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <div class="guide-body">
+            <div>
+              <h4 class="mini-title">Funciones incluidas</h4>
+              <div class="feat-grid">
+                <div class="feat"><span class="fi">🗓️</span><div><b>Agenda por profesional</b><span>Vista cada 30 minutos, control de superposiciones, huecos libres y bloqueos.</span></div></div>
+                <div class="feat"><span class="fi">📋</span><div><b>Ficha estética</b><span>Condiciones médicas, alergias, tipo de piel, contraindicaciones y fotos.</span></div></div>
+                <div class="feat"><span class="fi">🎟️</span><div><b>Packs de sesiones</b><span>Vendé packs, descontá sesiones al cobrar y mirá cuántas quedan.</span></div></div>
+                <div class="feat"><span class="fi">💰</span><div><b>Caja diaria y mensual</b><span>Ingresos por medio de pago, entradas y salidas, exportación a Excel.</span></div></div>
+                <div class="feat"><span class="fi">💅</span><div><b>Servicios y equipo</b><span>Precio, duración, profesionales habilitados, horarios y comisiones.</span></div></div>
+                <div class="feat"><span class="fi">💬</span><div><b>Recordatorios</b><span>Avisá el turno y enviá el estado de cuenta por WhatsApp.</span></div></div>
+                <div class="feat"><span class="fi">🧾</span><div><b>Cuenta corriente</b><span>Cargos, pagos, saldo y packs por clienta con historial completo.</span></div></div>
+                <div class="feat"><span class="fi">🔐</span><div><b>Datos y respaldo</b><span>Nombre del centro, copia completa con fotos, restauración y licencia.</span></div></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="mini-title">Instructivo paso a paso</h4>
+              <ol class="steps">
+                <li>Abrí la app y agregala a la pantalla de inicio del celular.</li>
+                <li>En <b>Datos</b>, cambiá el nombre del centro.</li>
+                <li>En <b>Servicios</b>, cargá cada servicio con precio, duración y profesionales habilitados.</li>
+                <li>En <b>Equipo</b>, sumá a tus profesionales con horario y comisión.</li>
+                <li>En <b>Clientes</b>, cargá a tus clientas y completá la ficha estética.</li>
+                <li>En <b>Agenda</b>, elegí el día y tocá <b>+ libre</b> para reservar. El sistema controla superposiciones.</li>
+                <li>Al terminar la atención, tocá <b>Cobrar</b>: efectivo, transferencia o descontar una sesión del pack.</li>
+                <li>En <b>Datos</b>, descargá la copia de seguridad y activá tu licencia.</li>
+              </ol>
+              <div class="daily">
+                <h5>En el día a día</h5>
+                <ul>
+                  <li>Confirmar los turnos del día por WhatsApp.</li>
+                  <li>Cobrar cada atención al finalizar.</li>
+                  <li>Descontar packs cuando corresponda.</li>
+                  <li>Revisar la caja y los turnos del día siguiente.</li>
+                </ul>
+              </div>
+              <div class="tip"><span class="tip-ico">💡</span><p><b>Tip:</b> guardá alergias y contraindicaciones en la ficha antes de la primera sesión. Quedan a mano para la próxima.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GIMNASIO -->
+        <div class="guide-panel" id="panel-gimnasio" role="tabpanel" aria-labelledby="tab-gimnasio" style="--a:#2f6f62;--a2:#4f9b8a;--as:#e3efec" hidden>
+          <div class="guide-head">
+            <img class="app-icon" src="icons/app-gimnasio.png" alt="Ícono de Gimnasio" width="66" height="66">
+            <div class="guide-title">
+              <span class="app-kicker">Gimnasios y entrenamiento</span>
+              <h3>Gimnasio</h3>
+              <p>La app para gimnasios: cobrá cuotas, marcá asistencia, liquidá profesores y seguí los gastos sin perder el orden.</p>
+            </div>
+            <a class="btn btn-app" href="https://solmark01.github.io/Gimanasio/" target="_blank" rel="noopener">Abrir app<span class="sr-only"> Gimnasio</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <div class="guide-body">
+            <div>
+              <h4 class="mini-title">Funciones incluidas</h4>
+              <div class="feat-grid">
+                <div class="feat"><span class="fi">💵</span><div><b>Caja del gimnasio</b><span>Cobros, gastos y totales de hoy, semana y mes en una sola pantalla.</span></div></div>
+                <div class="feat"><span class="fi">🏋️</span><div><b>Alumnos y cuotas</b><span>Ficha, número, plan, vencimiento, deuda y asistencia. Importá contactos.</span></div></div>
+                <div class="feat"><span class="fi">🗓️</span><div><b>Clases y asistencia</b><span>Grilla semanal, varios días y horarios, cupos, planes y lista de presentes.</span></div></div>
+                <div class="feat"><span class="fi">🧑‍🏫</span><div><b>Profesores</b><span>Asignación de clases, liquidaciones, cuenta corriente y deudas.</span></div></div>
+                <div class="feat"><span class="fi">🧾</span><div><b>Gastos y vencimientos</b><span>Alquiler, servicios y gastos variables con saldo por concepto.</span></div></div>
+                <div class="feat"><span class="fi">📊</span><div><b>Informe mensual</b><span>Ingresos, egresos, comparación con el mes anterior y exportación.</span></div></div>
+                <div class="feat"><span class="fi">🧾</span><div><b>Recibos</b><span>Recibo en imagen para compartir por WhatsApp con el alumno.</span></div></div>
+                <div class="feat"><span class="fi">🔐</span><div><b>Datos y respaldo</b><span>Nombre, cuota, logo, copia de seguridad y licencia.</span></div></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="mini-title">Instructivo paso a paso</h4>
+              <ol class="steps">
+                <li>Abrí la app y agregala a la pantalla de inicio del celular.</li>
+                <li>En <b>Datos</b>, poné el nombre del gimnasio y la cuota mensual general.</li>
+                <li>En <b>Alumnos</b>, cargá cada alumno con teléfono y plan. Podés importar contactos.</li>
+                <li>En <b>Profesores</b>, sumá a tu equipo y definí cómo se liquida.</li>
+                <li>En <b>Clases</b>, armá la grilla semanal con día, horario, profesor, cupo y planes.</li>
+                <li>En <b>Caja</b>, cobrá la cuota y generá el recibo. En <b>Clases → Asistencia</b>, marcá los presentes.</li>
+                <li>En <b>Gastos</b>, cargá alquiler, servicios y demás conceptos con su vencimiento.</li>
+                <li>En <b>Datos → Informe</b>, revisá el mes y descargá la copia de seguridad.</li>
+              </ol>
+              <div class="daily">
+                <h5>En el día a día</h5>
+                <ul>
+                  <li>Marcar asistencia en cada clase.</li>
+                  <li>Cobrar cuotas y compartir el recibo.</li>
+                  <li>Revisar alumnos con deuda.</li>
+                  <li>Registrar gastos cuando se pagan.</li>
+                </ul>
+              </div>
+              <div class="tip"><span class="tip-ico">💡</span><p><b>Tip:</b> cargá los gastos fijos con su día de vencimiento. El inicio te muestra los próximos vencimientos.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="instalar" aria-labelledby="installTitle">
+    <div class="container">
+      <div class="install reveal">
+        <span class="kicker">Instalación</span>
+        <h2 id="installTitle">Dejala como una app más en tu celular</h2>
+        <p class="lead">No hace falta Play Store ni App Store. Se abre desde el navegador y se agrega a la pantalla de inicio para usarla a pantalla completa.</p>
+        <div class="install-grid">
+          <div class="install-card">
+            <h3><span>🤖</span> Android</h3>
+            <ol>
+              <li>Abrí el enlace de tu app en <b>Chrome</b>.</li>
+              <li>Tocá el menú <b>⋮</b> arriba a la derecha.</li>
+              <li>Elegí <b>Instalar aplicación</b> o <b>Agregar a pantalla principal</b>.</li>
+              <li>Confirmá. El ícono queda junto a tus otras apps.</li>
+            </ol>
+          </div>
+          <div class="install-card">
+            <h3><span>🍎</span> iPhone y iPad</h3>
+            <ol>
+              <li>Abrí el enlace en <b>Safari</b>.</li>
+              <li>Tocá <b>Compartir</b> (el cuadrado con la flecha).</li>
+              <li>Elegí <b>Añadir a pantalla de inicio</b>.</li>
+              <li>Tocá <b>Añadir</b> arriba a la derecha.</li>
+            </ol>
+          </div>
+          <div class="install-card">
+            <h3><span>💻</span> PC y notebook</h3>
+            <ol>
+              <li>Abrí la app en <b>Chrome</b> o <b>Edge</b>.</li>
+              <li>Tocá el ícono de instalar en la barra de direcciones.</li>
+              <li>Confirmá <b>Instalar</b>.</li>
+              <li>Se abre en su propia ventana, como un programa.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="install-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+          <span><b>Importante:</b> si el enlace se abre dentro de Instagram, Facebook o WhatsApp, primero tocá <b>⋮</b> y elegí <b>Abrir en el navegador</b>. Si no, la opción de instalar no aparece.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activar" aria-labelledby="activateTitle">
+    <div class="container activate-grid">
+      <div class="activate-copy">
+        <div class="section-head reveal">
+          <span class="kicker">Licencia y renovación</span>
+          <h2 id="activateTitle">Activar o renovar tu clave</h2>
+          <p>Cada app incluye un período de prueba. Cuando quieras renovar, te enviamos una clave personal para pegar en la app.</p>
+        </div>
+        <ol class="activate-steps reveal">
+          <li>Abrí la app y entrá a <b>Datos</b> (la última pestaña del menú).</li>
+          <li>Copiá tu <b>Código de cliente</b>.</li>
+          <li>Envianoslo por WhatsApp junto con el nombre de tu negocio.</li>
+          <li>Cuando recibas la clave, tocá <b>Ingresar clave de renovación</b>, pegala completa y confirmá.</li>
+          <li>Verificá en <b>Datos</b> que la fecha de vencimiento y los días restantes estén correctos.</li>
+        </ol>
+      </div>
+      <aside class="key-card reveal" aria-label="Ejemplo de código de cliente">
+        <h3>Tu código de cliente</h3>
+        <div class="key-label">Lo encontrás en Datos → Licencia</div>
+        <div class="key-code">SM-XXXX<br>Válida hasta: DD/MM/AAAA</div>
+        <p class="key-note">Es personal. La clave está firmada para tu código y tu fecha de vencimiento, así que no la compartas con otras personas.</p>
+        <a class="btn btn-wa" href="https://wa.me/5493442674484?text=Hola%20Solmark%2C%20quiero%20activar%20o%20renovar%20mi%20clave.%20Mi%20c%C3%B3digo%20de%20cliente%20es%3A%20" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.3-.7-.7-1.2-1.5-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.5s0-.3-.1-.5c-.1-.2-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+          Enviar mi código por WhatsApp
+        </a>
+        <div class="key-secure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Clave personal y no transferible
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faqTitle">
+    <div class="container">
+      <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+        <span class="kicker">Preguntas frecuentes</span>
+        <h2 id="faqTitle">Antes de empezar</h2>
+        <p style="margin-left:auto;margin-right:auto">Las dudas que más nos consultan. Si te queda alguna, escribinos por WhatsApp.</p>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>¿Necesito internet para usar la app?</summary>
+          <p>Solo para abrirla la primera vez, instalarla y recibir actualizaciones. Después funciona sin conexión y guarda los datos en tu teléfono. <b>No uses el modo incógnito</b>, porque puede borrar la información al cerrar.</p>
+        </details>
+        <details>
+          <summary>¿Los datos se comparten entre celulares?</summary>
+          <p>No. Cada dispositivo tiene su propia base local. Para pasar todo a otro celular usá <b>Datos → Descargar copia de seguridad</b> en el viejo y <b>Restaurar</b> en el nuevo.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si borro los datos del navegador o desinstalo la app?</summary>
+          <p>Se pueden perder. Descargá una copia con frecuencia y guardala en Drive, en el correo o mandátela por WhatsApp. La copia incluye clientes, ventas, turnos y configuración.</p>
+        </details>
+        <details>
+          <summary>¿Cómo renuevo la licencia?</summary>
+          <p>Pedí la clave por WhatsApp con tu <b>código de cliente</b>. Cuando la recibas, entrá a <b>Datos → Ingresar clave de renovación</b>, pegala y confirmá. La fecha nueva aparece en la misma pantalla.</p>
+        </details>
+        <details>
+          <summary>¿Puedo probar antes de pagar?</summary>
+          <p>Sí. Cada app tiene un período de prueba para que la configures y la uses con tu negocio. Escribinos y te acompañamos en la puesta en marcha.</p>
+        </details>
+        <details>
+          <summary>¿Cómo cambio de teléfono?</summary>
+          <p>En el teléfono viejo: <b>Datos → Descargar copia de seguridad</b>. En el nuevo: instalá la app, abrí <b>Datos → Restaurar</b>, elegí el archivo y verificá la licencia. Recién después borrá la app vieja.</p>
+        </details>
+        <details>
+          <summary>¿Puedo cambiar el nombre o el logo del negocio?</summary>
+          <p>Sí. En <b>Datos</b> o <b>Config</b>, según la app, podés cambiar el nombre del negocio, la cuota general, el logo y otros datos de la marca.</p>
+        </details>
+        <details>
+          <summary>¿Sirve si trabajo con empleados?</summary>
+          <p>Barbería, Roti SM y Centro de Estética incluyen equipo, roles, horarios y comisiones. Gimnasio incluye profesores y liquidaciones. Si necesitás varios dispositivos a la vez, escribinos y vemos el mejor esquema para tu negocio.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" aria-labelledby="contactTitle" style="padding-top:12px">
+    <div class="container">
+      <div class="contact reveal">
+        <div>
+          <span class="kicker">Soporte y puesta en marcha</span>
+          <h2 id="contactTitle">¿Arrancamos con tu negocio?</h2>
+          <p>Te ayudamos a elegir la app, instalarla y dejarla configurada. Escribinos por WhatsApp y te respondemos con los próximos pasos.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-wa" href="https://wa.me/5493442674484?text=Hola%20Solmark%2C%20quiero%20informaci%C3%B3n%20para%20empezar%20con%20una%20app." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.3-.7-.7-1.2-1.5-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.5s0-.3-.1-.5c-.1-.2-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+            Escribir por WhatsApp
+          </a>
+          <span class="contact-note">Soporte de Solmark</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="brand">
+        <img src="icons/icon-192.png" alt="" width="34" height="34" style="width:34px;height:34px">
+        <span class="brand-name"><b>Solmark</b><span>Portal de clientes</span></span>
+      </div>
+      <p>Sistemas de gestión para barberías, rotiserías, centros de estética y gimnasios. Simple, en el celular y con tus datos bajo control.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <b>Aplicaciones</b>
+        <a href="https://solmark01.github.io/Barberia/" target="_blank" rel="noopener">Barbería</a>
+        <a href="https://solmark01.github.io/Rotiseria/" target="_blank" rel="noopener">Roti SM</a>
+        <a href="https://solmark01.github.io/Centro-Estetica/" target="_blank" rel="noopener">Centro de Estética</a>
+        <a href="https://solmark01.github.io/Gimanasio/" target="_blank" rel="noopener">Gimnasio</a>
+      </div>
+      <div class="footer-col">
+        <b>Portal</b>
+        <a href="#apps">Aplicaciones</a>
+        <a href="#guia">Funciones</a>
+        <a href="#instalar">Instalar</a>
+        <a href="#activar">Claves</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+      <div class="footer-col">
+        <b>Contacto</b>
+        <a href="https://wa.me/5493442674484?text=Hola%20Solmark%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener">WhatsApp de soporte</a>
+        <span>Soporte y puesta en marcha</span>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year">2026</span> <b>Solmark</b></span>
+    <span>Los datos se guardan en tu dispositivo. Hacé copias de seguridad.</span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5493442674484?text=Hola%20Solmark%2C%20necesito%20ayuda%20con%20mi%20app." target="_blank" rel="noopener" aria-label="Escribir a soporte por WhatsApp" title="Soporte por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.3-.7-.7-1.2-1.5-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.5s0-.3-.1-.5c-.1-.2-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+</a>
+
+<noscript><style>.guide-panel[hidden]{display:block!important}</style></noscript>
+
+<script>
+(function () {
+  "use strict";
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".gtab"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".guide-panel"));
+  var valid = ["barberia", "rotiseria", "estetica", "gimnasio"];
+  var current = "barberia";
+
+  function activate(id, updateUrl) {
+    if (valid.indexOf(id) === -1) id = "barberia";
+    current = id;
+    tabs.forEach(function (tab) {
+      var on = tab.getAttribute("data-app") === id;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function (panel) {
+      panel.hidden = panel.id !== "panel-" + id;
+    });
+    if (updateUrl !== false) {
+      try { history.replaceState(null, "", "#guia-" + id); } catch (e) {}
+    }
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      activate(tab.getAttribute("data-app"));
+    });
+    tab.addEventListener("keydown", function (e) {
+      var i = tabs.indexOf(tab);
+      var next = null;
+      if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
+      else if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = tabs.length - 1;
+      if (next === null) return;
+      e.preventDefault();
+      tabs[next].focus();
+      activate(tabs[next].getAttribute("data-app"));
+    });
+  });
+
+  document.querySelectorAll("[data-guide]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.getAttribute("data-guide");
+      activate(id);
+      var section = document.getElementById("guia");
+      if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.setTimeout(function () {
+        var selected = document.getElementById("tab-" + id);
+        if (selected) selected.focus({ preventScroll: true });
+      }, 450);
+    });
+  });
+
+  var hash = (location.hash || "").match(/^#guia-(barberia|rotiseria|estetica|gimnasio)$/);
+  var query = null;
+  try { query = new URLSearchParams(location.search).get("app"); } catch (e) {}
+  var initial = hash ? hash[1] : (valid.indexOf(query) !== -1 ? query : "barberia");
+  activate(initial, false);
+
+  if (hash || valid.indexOf(query) !== -1) {
+    window.setTimeout(function () {
+      var guideSection = document.getElementById("guia");
+      if (guideSection) guideSection.scrollIntoView({ behavior: "auto", block: "start" });
+    }, 120);
+  }
+
+  var header = document.getElementById("topbar");
+  function onScroll() {
+    if (header) header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  var menuBtn = document.getElementById("menuBtn");
+  var mobileNav = document.getElementById("mobileNav");
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener("click", function () {
+      var open = mobileNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    });
+    mobileNav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) {
+        mobileNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Abrir menú");
+      }
+    });
+  }
+
+  var year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>
