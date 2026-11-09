@@ -13,6 +13,19 @@ service cloud.firestore {
     function seeAll() { return adm() || has('Socio') || has('Supervisor') || has('Soporte'); }
     function mine(f) { return seeAll() || resource.data[f] == request.auth.uid; }
     function mineNew(f) { return seeAll() || request.resource.data[f] == request.auth.uid; }
+    function leadOk(data) {
+      return data.keys().hasAll(['name','biz','email','phone','city','prov','createdAt','source','app','hp'])
+        && data.hp == ''
+        && data.name is string && data.name.size() >= 2 && data.name.size() <= 80
+        && data.biz is string && data.biz.size() >= 2 && data.biz.size() <= 100
+        && data.email is string && data.email.size() <= 120 && data.email.matches('^[^@ ]+@[^@ ]+[.][^@ ]+$')
+        && data.phone is string && data.phone.size() >= 8 && data.phone.size() <= 25
+        && data.city is string && data.city.size() >= 2 && data.city.size() <= 80
+        && data.prov is string && data.prov.size() >= 2 && data.prov.size() <= 60
+        && data.app is string && data.app.size() <= 20
+        && data.source == 'portal'
+        && data.createdAt is int;
+    }
 
     match /users/{u} {
       allow read: if ok();
@@ -90,5 +103,10 @@ service cloud.firestore {
     match /exp/{d} { allow read, write: if adm() || has('Socio'); }
     match /hist/{d} { allow read, write: if adm() || has('Soporte'); }
     match /keys/{d} { allow read: if adm() || has('Soporte'); allow write: if adm(); }
+    match /leads/{d} {
+      allow create: if leadOk(request.resource.data);
+      allow read: if adm() || has('Socio') || has('Supervisor') || has('Soporte');
+      allow update, delete: if adm();
+    }
   }
 }

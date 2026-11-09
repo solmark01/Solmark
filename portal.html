@@ -311,6 +311,44 @@ section{padding:66px 0;scroll-margin-top:86px}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+/* Registro de primera vez */
+.lead-modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(8,26,44,.58);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.lead-modal.open{display:flex}
+.lead-card{position:relative;width:min(580px,100%);max-height:calc(100dvh - 28px);overflow:auto;background:#fff;border-radius:24px;border:1px solid rgba(255,255,255,.6);box-shadow:0 50px 110px -34px rgba(4,20,38,.75);padding:26px 26px 22px;animation:leadIn .22s ease-out}
+@keyframes leadIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.lead-close{position:absolute;top:12px;right:12px;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);background:#fff;border-radius:10px;color:var(--muted);cursor:pointer}
+.lead-close:hover{background:#f2f8fd;color:var(--ink)}
+.lead-card .app-kicker{margin-bottom:6px}
+.lead-card h2{margin:0;font-size:26px;line-height:1.15;letter-spacing:-.04em;padding-right:36px}
+.lead-intro{margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px 12px;margin-top:18px}
+.lead-field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.lead-field label{font-size:11.5px;font-weight:800;color:var(--ink2);letter-spacing:.01em}
+.lead-field label span{color:#c0453a}
+.lead-field input,.lead-field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#f9fcff;font:inherit;font-size:14.5px;color:var(--ink);transition:border-color .15s,box-shadow .15s,background .15s}
+.lead-field input::placeholder{color:#93a8ba}
+.lead-field input:focus,.lead-field select:focus{outline:none;border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(10,95,196,.13)}
+.lead-field .err{display:none;font-size:11px;font-weight:700;line-height:1.35;color:#c0453a}
+.lead-field.bad input,.lead-field.bad select{border-color:#e3a19a;background:#fff8f7}
+.lead-field.bad .err{display:block}
+.lead-note{margin:13px 0 0;font-size:11px;line-height:1.5;color:var(--muted)}
+.lead-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.lead-actions .btn{flex:1 1 160px}
+.lead-actions .btn[disabled]{opacity:.65;cursor:wait;transform:none}
+.lead-alert{display:none;margin:13px 0 0;padding:10px 12px;border-radius:10px;background:#fdecea;border:1px solid #f3b8b2;color:#a3352b;font-size:12.5px;line-height:1.5}
+.lead-alert.show{display:block}
+.lead-alert a{font-weight:800;text-decoration:underline}
+.lead-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.lead-success{text-align:center;padding:6px 0 2px}
+.lead-check{width:54px;height:54px;margin:2px auto 10px;display:grid;place-items:center;border-radius:50%;background:#e3efec;color:var(--teal);font-size:27px;font-weight:800}
+.lead-success h2{padding:0;font-size:24px}
+.lead-success p{margin:8px auto 0;max-width:400px;font-size:13.5px;color:var(--muted)}
+.lead-success .lead-actions{justify-content:center}
+@media(max-width:560px){
+  .lead-card{padding:22px 18px 18px;border-radius:20px}
+  .lead-grid{grid-template-columns:1fr}
+  .lead-card h2{font-size:23px}
+}
 @media print{
   .site-header,.mobile-nav,.wa-float,.hero-visual,.guide-tabs,.contact-actions,.skip{display:none!important}
   body{background:#fff;color:#000}
@@ -416,7 +454,7 @@ section{padding:66px 0;scroll-margin-top:86px}
       <div class="section-head reveal">
         <span class="kicker">Las aplicaciones</span>
         <h2 id="appsTitle">Elegí la app de tu negocio</h2>
-        <p>Cada app es independiente, se instala en tu celular y guarda los datos en el dispositivo. Tocá <b>Abrir app</b> para entrar o <b>Ver instructivo</b> para aprender a usarla.</p>
+        <p>Cada app es independiente, se instala en tu celular y guarda los datos en el dispositivo. Tocá <b>Abrir app</b> para entrar o <b>Ver instructivo</b> para aprender a usarla. La primera vez te pedimos unos datos de contacto para poder acompañarte.</p>
       </div>
       <div class="apps-grid">
         <article class="app-card reveal" style="--a:#2f6f62;--a2:#4f9b8a;--as:#e3efec;--d:0ms">
@@ -943,6 +981,97 @@ section{padding:66px 0;scroll-margin-top:86px}
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.3-.7-.7-1.2-1.5-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.5s0-.3-.1-.5c-.1-.2-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
 </a>
 
+<div class="lead-modal" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadTitle" aria-describedby="leadIntro">
+  <div class="lead-card" role="document">
+    <button class="lead-close" id="leadClose" type="button" aria-label="Cerrar formulario">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+
+    <div id="leadFormWrap">
+      <span class="app-kicker">Primera vez</span>
+      <h2 id="leadTitle">Contanos de tu negocio</h2>
+      <p class="lead-intro" id="leadIntro">Completá estos datos una sola vez. Nos sirven para darte soporte y avisarte cuando haya novedades.</p>
+      <form id="leadForm" novalidate>
+        <div class="lead-grid">
+          <div class="lead-field" data-field="name">
+            <label for="leadName">Nombre de contacto <span aria-hidden="true">*</span></label>
+            <input id="leadName" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Ej: Juan Pérez" required aria-describedby="leadErrName">
+            <span class="err" id="leadErrName">Ingresá tu nombre.</span>
+          </div>
+          <div class="lead-field" data-field="biz">
+            <label for="leadBiz">Nombre del negocio <span aria-hidden="true">*</span></label>
+            <input id="leadBiz" name="biz" type="text" autocomplete="organization" maxlength="100" placeholder="Ej: Barbería El Rey" required aria-describedby="leadErrBiz">
+            <span class="err" id="leadErrBiz">Ingresá el nombre del negocio.</span>
+          </div>
+          <div class="lead-field" data-field="email">
+            <label for="leadEmail">Correo <span aria-hidden="true">*</span></label>
+            <input id="leadEmail" name="email" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="tucorreo@ejemplo.com" required aria-describedby="leadErrEmail">
+            <span class="err" id="leadErrEmail">Ingresá un correo válido.</span>
+          </div>
+          <div class="lead-field" data-field="phone">
+            <label for="leadPhone">Número de celular <span aria-hidden="true">*</span></label>
+            <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="Ej: 3442 674484" required aria-describedby="leadErrPhone">
+            <span class="err" id="leadErrPhone">Ingresá un celular válido (mínimo 8 números).</span>
+          </div>
+          <div class="lead-field" data-field="city">
+            <label for="leadCity">Ciudad <span aria-hidden="true">*</span></label>
+            <input id="leadCity" name="city" type="text" autocomplete="address-level2" maxlength="80" placeholder="Ej: Concepción del Uruguay" required aria-describedby="leadErrCity">
+            <span class="err" id="leadErrCity">Ingresá tu ciudad.</span>
+          </div>
+          <div class="lead-field" data-field="prov">
+            <label for="leadProv">Provincia <span aria-hidden="true">*</span></label>
+            <select id="leadProv" name="prov" required aria-describedby="leadErrProv">
+              <option value="">Elegí una provincia</option>
+              <option>Buenos Aires</option>
+              <option>Ciudad Autónoma de Buenos Aires</option>
+              <option>Catamarca</option>
+              <option>Chaco</option>
+              <option>Chubut</option>
+              <option>Córdoba</option>
+              <option>Corrientes</option>
+              <option>Entre Ríos</option>
+              <option>Formosa</option>
+              <option>Jujuy</option>
+              <option>La Pampa</option>
+              <option>La Rioja</option>
+              <option>Mendoza</option>
+              <option>Misiones</option>
+              <option>Neuquén</option>
+              <option>Río Negro</option>
+              <option>Salta</option>
+              <option>San Juan</option>
+              <option>San Luis</option>
+              <option>Santa Cruz</option>
+              <option>Santa Fe</option>
+              <option>Santiago del Estero</option>
+              <option>Tierra del Fuego</option>
+              <option>Tucumán</option>
+            </select>
+            <span class="err" id="leadErrProv">Elegí tu provincia.</span>
+          </div>
+        </div>
+        <div class="lead-hp" aria-hidden="true"><label for="leadWeb">No completar</label><input id="leadWeb" name="web" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="lead-alert" id="leadAlert" role="alert"></p>
+        <div class="lead-actions">
+          <button class="btn btn-primary" type="submit" id="leadSubmit">Guardar y entrar</button>
+          <button class="btn btn-soft" type="button" id="leadCancel">Ahora no</button>
+        </div>
+        <p class="lead-note">Usamos tus datos solo para contacto y soporte. No los compartimos con terceros.</p>
+      </form>
+    </div>
+
+    <div class="lead-success" id="leadSuccess" hidden>
+      <div class="lead-check" aria-hidden="true">✓</div>
+      <h2 id="leadSuccessTitle">¡Listo!</h2>
+      <p>Ya registramos tus datos. Podés entrar a la app y usarla con tu negocio.</p>
+      <div class="lead-actions">
+        <a class="btn btn-primary" id="leadGo" href="#" target="_blank" rel="noopener">Abrir la app</a>
+        <button class="btn btn-soft" type="button" id="leadDone">Seguir en el portal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <noscript><style>.guide-panel[hidden]{display:block!important}</style></noscript>
 
 <script>
@@ -1054,6 +1183,251 @@ section{padding:66px 0;scroll-margin-top:86px}
   } else {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
   }
+
+  /* Registro de primera vez */
+  var LEAD_KEY = "solmark_lead_v1";
+  var LEADS_URL = window.SOLMARK_LEADS_URL || "https://firestore.googleapis.com/v1/projects/solmark/databases/(default)/documents/leads?key=AIzaSyDtQX3K1L68efJk8U7wf7ZNurtIrKdaBIk";
+  var APP_LIST = [
+    { key: "Barberia", name: "Barbería" },
+    { key: "Rotiseria", name: "Roti SM" },
+    { key: "Centro-Estetica", name: "Centro de Estética" },
+    { key: "Gimanasio", name: "Gimnasio" }
+  ];
+  var LEAD_FIELDS = ["name", "biz", "email", "phone", "city", "prov"];
+  var leadModal = document.getElementById("leadModal");
+  var leadForm = document.getElementById("leadForm");
+  var leadPending = null;
+  var leadLastFocus = null;
+
+  function appFor(url) {
+    for (var i = 0; i < APP_LIST.length; i++) {
+      if (url.indexOf("solmark01.github.io/" + APP_LIST[i].key + "/") !== -1) return APP_LIST[i];
+    }
+    return null;
+  }
+
+  function storedLead() {
+    try {
+      var data = JSON.parse(localStorage.getItem(LEAD_KEY));
+      return data && data.name ? data : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function storeLead(v, id) {
+    try {
+      localStorage.setItem(LEAD_KEY, JSON.stringify({
+        id: id || "", name: v.name, biz: v.biz, email: v.email,
+        phone: v.phone, city: v.city, prov: v.prov, ts: Date.now()
+      }));
+    } catch (e) {}
+  }
+
+  function fieldEl(key) {
+    return document.getElementById("lead" + key.charAt(0).toUpperCase() + key.slice(1));
+  }
+
+  function readLeadForm() {
+    var v = {};
+    LEAD_FIELDS.forEach(function (key) {
+      var el = fieldEl(key);
+      v[key] = el ? el.value.trim() : "";
+    });
+    return v;
+  }
+
+  function setBad(key, bad, msg) {
+    var wrap = leadModal.querySelector('[data-field="' + key + '"]');
+    var el = fieldEl(key);
+    if (!wrap || !el) return;
+    wrap.classList.toggle("bad", !!bad);
+    if (bad) el.setAttribute("aria-invalid", "true");
+    else el.removeAttribute("aria-invalid");
+    if (bad && msg) {
+      var err = wrap.querySelector(".err");
+      if (err) err.textContent = msg;
+    }
+  }
+
+  function validateLead(v) {
+    var bad = false;
+    var first = null;
+    function chk(key, isBad, msg) {
+      if (isBad) {
+        bad = true;
+        setBad(key, true, msg);
+        if (!first) first = fieldEl(key);
+      } else {
+        setBad(key, false);
+      }
+    }
+    chk("name", v.name.length < 2, "Ingresá tu nombre.");
+    chk("biz", v.biz.length < 2, "Ingresá el nombre del negocio.");
+    chk("email", !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email), "Ingresá un correo válido.");
+    var digits = v.phone.replace(/\D/g, "");
+    chk("phone", digits.length < 8 || digits.length > 15, "Ingresá un celular válido (mínimo 8 números).");
+    chk("city", v.city.length < 2, "Ingresá tu ciudad.");
+    chk("prov", !v.prov, "Elegí tu provincia.");
+    if (first && first.focus) first.focus();
+    return !bad;
+  }
+
+  function leadWaLink(v, app) {
+    var msg = "Hola Solmark, me registré en el portal.\n" +
+      "Nombre: " + v.name + "\n" +
+      "Negocio: " + v.biz + "\n" +
+      "Correo: " + v.email + "\n" +
+      "Celular: " + v.phone + "\n" +
+      "Ciudad: " + v.city + ", " + v.prov + "\n" +
+      "Quiero empezar con la app " + app.name + ".";
+    return "https://wa.me/5493442674484?text=" + encodeURIComponent(msg);
+  }
+
+  function showLeadSuccess(v) {
+    var first = v.name.split(/\s+/)[0] || "";
+    document.getElementById("leadSuccessTitle").textContent = first ? "¡Listo, " + first + "!" : "¡Listo!";
+    document.getElementById("leadFormWrap").hidden = true;
+    document.getElementById("leadSuccess").hidden = false;
+    var go = document.getElementById("leadGo");
+    if (go) go.focus();
+  }
+
+  function openLead(app, url) {
+    leadPending = { app: app, url: url };
+    var go = document.getElementById("leadGo");
+    go.href = url;
+    go.textContent = "Abrir " + app.name;
+    document.getElementById("leadFormWrap").hidden = false;
+    document.getElementById("leadSuccess").hidden = true;
+    var alertBox = document.getElementById("leadAlert");
+    alertBox.classList.remove("show");
+    alertBox.textContent = "";
+    leadForm.reset();
+    LEAD_FIELDS.forEach(function (key) { setBad(key, false); });
+    var btn = document.getElementById("leadSubmit");
+    btn.disabled = false;
+    btn.textContent = "Guardar y entrar";
+    leadLastFocus = document.activeElement;
+    leadModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    window.setTimeout(function () {
+      var first = fieldEl("name");
+      if (first) first.focus();
+    }, 40);
+  }
+
+  function closeLead() {
+    leadModal.classList.remove("open");
+    document.body.style.overflow = "";
+    if (leadLastFocus && leadLastFocus.focus) leadLastFocus.focus();
+  }
+
+  function submitLead(v) {
+    var btn = document.getElementById("leadSubmit");
+    var alertBox = document.getElementById("leadAlert");
+    var hp = document.getElementById("leadWeb").value.trim();
+    btn.disabled = true;
+    btn.textContent = "Guardando…";
+    alertBox.classList.remove("show");
+    alertBox.textContent = "";
+
+    var body = { fields: {
+      name: { stringValue: v.name },
+      biz: { stringValue: v.biz },
+      email: { stringValue: v.email },
+      phone: { stringValue: v.phone },
+      city: { stringValue: v.city },
+      prov: { stringValue: v.prov },
+      app: { stringValue: leadPending.app.name },
+      source: { stringValue: "portal" },
+      hp: { stringValue: hp },
+      createdAt: { integerValue: String(Date.now()) }
+    }};
+
+    fetch(LEADS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }).then(function (doc) {
+      var id = doc && doc.name ? doc.name.split("/").pop() : "";
+      storeLead(v, id);
+      btn.disabled = false;
+      btn.textContent = "Guardar y entrar";
+      showLeadSuccess(v);
+    }).catch(function () {
+      btn.disabled = false;
+      btn.textContent = "Guardar y entrar";
+      alertBox.innerHTML = 'No pudimos guardar tus datos. Revisá tu conexión e intentá de nuevo, o <a href="' +
+        leadWaLink(v, leadPending.app) + '" target="_blank" rel="noopener" id="leadWa">enviálos por WhatsApp</a>.';
+      alertBox.classList.add("show");
+      var wa = document.getElementById("leadWa");
+      if (wa) {
+        wa.addEventListener("click", function () {
+          storeLead(v, "");
+          window.setTimeout(function () { showLeadSuccess(v); }, 30);
+        });
+      }
+    });
+  }
+
+  LEAD_FIELDS.forEach(function (key) {
+    var el = fieldEl(key);
+    if (!el) return;
+    el.addEventListener("input", function () { setBad(key, false); });
+    el.addEventListener("change", function () { setBad(key, false); });
+  });
+
+  leadForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = readLeadForm();
+    if (!validateLead(v)) return;
+    submitLead(v);
+  });
+
+  document.getElementById("leadClose").addEventListener("click", closeLead);
+  document.getElementById("leadCancel").addEventListener("click", closeLead);
+  document.getElementById("leadDone").addEventListener("click", closeLead);
+  leadModal.addEventListener("click", function (e) {
+    if (e.target === leadModal) closeLead();
+  });
+
+  leadModal.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeLead();
+      return;
+    }
+    if (e.key !== "Tab") return;
+    var nodes = leadModal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled])');
+    var list = Array.prototype.filter.call(nodes, function (el) {
+      return el.tabIndex >= 0 && !el.closest("[hidden]") && (el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    });
+    if (!list.length) return;
+    var first = list[0];
+    var last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (storedLead()) return;
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    var app = appFor(a.href);
+    if (!app) return;
+    e.preventDefault();
+    openLead(app, a.href);
+  });
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(function () {});

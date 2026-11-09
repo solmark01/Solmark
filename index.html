@@ -31,25 +31,25 @@ const addD=(a,n)=>{const d=new Date(a+"T12:00:00");d.setDate(d.getDate()+n);retu
 const money=n=>"$"+Math.round(n).toLocaleString("es-AR"),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
 const b64u=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
 const EC={name:"ECDSA",namedCurve:"P-256"},sm=(a,f)=>a.reduce((t,x)=>t+f(x),0);
-const ROLES=["Administrador","Socio","Supervisor","Vendedor","Cliente","Soporte"],PROGS=["Barbería","Gimnasio"],MODS=[["res","🏠 Resumen"],["cli","👥 Clientes"],["pag","💰 Pagos"],["ven","🧑‍💼 Vendedores"],["apl","📱 Aplicaciones"],["tic","🎫 Tickets"],["age","📅 Agenda"],["gas","💸 Gastos"],["inf","📊 Informe"],["his","📜 Historial"],["cla","🔑 Claves"],["usr","🔐 Usuarios"],["aju","⚙️ Ajustes"]];
+const ROLES=["Administrador","Socio","Supervisor","Vendedor","Cliente","Soporte"],PROGS=["Barbería","Gimnasio"],MODS=[["res","🏠 Resumen"],["cli","👥 Clientes"],["pag","💰 Pagos"],["ven","🧑‍💼 Vendedores"],["apl","📱 Aplicaciones"],["tic","🎫 Tickets"],["age","📅 Agenda"],["gas","💸 Gastos"],["inf","📊 Informe"],["his","📜 Historial"],["reg","📥 Registros"],["cla","🔑 Claves"],["usr","🔐 Usuarios"],["aju","⚙️ Ajustes"]];
 const defPerm=()=>({_v:4,Socio:["res","cli","pag"],Supervisor:["res","cli","ven","tic","age","pag"],Vendedor:["res","cli","age","pag"],Cliente:[],Soporte:["cli","tic","pag"]});
 const MES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const APN=()=>D.apps.map(a=>a.name),priceFor=(m,pg)=>{const a=D.apps.find(x=>x.name===pg),v=a&&a.prices?+a.prices[m]:0;return v>0?v:price(m)},go=k=>{tab=k;cid=null;aid=null;ccu=null;vid=null;MO=false;draw()};
 let HF="",vid=null,ccu=null,aid=null,MO=false,CY=new Date().getFullYear(),CM=new Date().getMonth(),CD=null,U=null,ST="load",FIRST=false,KE=null,OLD=null,OLDH=[],VM=localStorage.getItem("gen_view")||"";
 const VW=()=>VM||(innerWidth>=800?"pc":"mv"),me=()=>{const u=D.users.find(x=>x.id===U);return u&&u.active!==false?u:null},isAdm=()=>{const u=me();return !!u&&u.roles.includes("Administrador")};
-const mods=()=>{const u=me();if(!u)return[];if(isAdm())return MODS.map(m=>m[0]);return[...new Set(u.roles.flatMap(r=>D.perm[r]||[]))].filter(k=>!["usr","cla","gas","inf","his","pre"].includes(k)).concat("aju",u.roles.includes("Socio")?["gas","inf","his"]:[],u.roles.includes("Supervisor")?["his"]:[])};
+const mods=()=>{const u=me();if(!u)return[];if(isAdm())return MODS.map(m=>m[0]);return[...new Set(u.roles.flatMap(r=>D.perm[r]||[]))].filter(k=>!["usr","cla","gas","inf","his","pre"].includes(k)).concat("aju",u.roles.includes("Socio")?["gas","inf","his"]:[],u.roles.includes("Supervisor")?["his"]:[],u.roles.some(r=>["Socio","Supervisor","Soporte"].includes(r))?["reg"]:[])};
 const un=id=>(D.users.find(u=>u.id===id)||{}).name||"-",tn=n=>"#"+String(n).padStart(4,"0"),SL=()=>D.users.filter(u=>u.roles.includes("Vendedor")&&u.active!==false);
 const prg=(c,n)=>c.progs.find(p=>p.prog===n),IC={Llamada:"📞",Visita:"🚗",Nota:"📝",Pago:"💰",Ticket:"🎫",Clave:"🔑",Asignación:"👤",Agenda:"📅",Baja:"⛔",Edición:"✏️",Recibo:"🧾"},ic=t=>IC[t]||"✅";
 const L=(c,t,n,by)=>D.log.unshift({id:uid(),clientId:c,sellerId:(cli(c)||{}).sellerId||"",date:today(),ts:Date.now(),type:t,note:n,by:by||U});
 const lastC=id=>D.log.filter(l=>l.clientId===id&&(l.type==="Llamada"||l.type==="Visita")).sort((a,b)=>b.date.localeCompare(a.date))[0];
 async function hp(p,s){return b64u(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s+p)))}
-function mig(){D.users=D.users||[];D.apps=D.apps||[];D.reqs=D.reqs||[];D.ledger=D.ledger||[];D.exp=D.exp||[];D.notifs=D.notifs||[];D.audit=D.audit||[];D.receipts=D.receipts||[];D.rn=D.rn||0;D.log=D.log||[];D.tn=D.tn||0;D.perm=D.perm||defPerm();
+function mig(){D.leads=D.leads||[];D.users=D.users||[];D.apps=D.apps||[];D.reqs=D.reqs||[];D.ledger=D.ledger||[];D.exp=D.exp||[];D.notifs=D.notifs||[];D.audit=D.audit||[];D.receipts=D.receipts||[];D.rn=D.rn||0;D.log=D.log||[];D.tn=D.tn||0;D.perm=D.perm||defPerm();
  if(!D.mig){(D.sellers||[]).forEach(s=>{if(!D.users.some(u=>u.id===s.id))D.users.push({id:s.id,name:s.name,email:"",phone:s.phone,notes:s.notes,roles:["Vendedor"],active:true})});D.mig=1}H.forEach(h=>{if(!h.hid)h.hid=uid()});
  D.clients.forEach(c=>{if(!c.progs)c.progs=[{prog:"Barbería",code:c.code||"",until:c.until||""}]});
  D.pay.forEach(p=>{if(!p.prog)p.prog="Barbería"});D.tickets.forEach(t=>{if(!t.num)t.num=++D.tn})}
 addEventListener("resize",()=>{if(!VM&&me())document.body.className=VW()});
 let K=null,H=[],D,tab="res",cid=null,mo=today().slice(0,7),tf="open",lastTok="";
-const DEF=()=>({receipts:[],rn:0,notifs:[],audit:[],ledger:[],exp:[],apps:[],reqs:[],users:[],log:[],tn:0,clients:[],sellers:[],pay:[],tickets:[],agenda:[],paid:{},lastBackup:"",cfg:{base:0,disc:{1:0,3:0,6:0,12:0},r1:100,r2:50}});
+const DEF=()=>({leads:[],receipts:[],rn:0,notifs:[],audit:[],ledger:[],exp:[],apps:[],reqs:[],users:[],log:[],tn:0,clients:[],sellers:[],pay:[],tickets:[],agenda:[],paid:{},lastBackup:"",cfg:{base:0,disc:{1:0,3:0,6:0,12:0},r1:100,r2:50}});
 try{K=JSON.parse(localStorage.getItem("gen_keys"));OLD=JSON.parse(localStorage.getItem("gen_data"));OLDH=JSON.parse(localStorage.getItem("gen_hist"))||[]}catch(e){}
 D=DEF();mig();
 function persist(){if(window.FB)FB.save()}
@@ -367,6 +367,18 @@ function vNotif(){const my=D.notifs.filter(n=>n.to===U).sort((a,b)=>b.ts-a.ts),n
  return`<h2>🔔 Notificaciones${tot?" ("+tot+")":""}</h2>`+(tot+rd.length?au.map(x=>`<div class="c" style="cursor:pointer" onclick="${x.cid?`tab='${x.tab}';cid='${x.cid}';draw()`:`go('${x.tab}')`}">${esc(x.t)}</div>`).join("")+nu.map(n=>`<div class="c row" style="cursor:pointer;border-left:4px solid #0a5fc4" onclick="openN('${n.id}')"><div>${esc(n.text)}<div class="m">${fd(n.date)} · ${esc(un(n.by))}</div></div><button class="s" onclick="event.stopPropagation();readN('${n.id}')">Leída</button></div>`).join("")+(nu.length>1?`<button class="s" onclick="readAll()">Marcar todas como leídas</button>`:"")+rd.map(n=>`<div class="c m">✔ ${esc(n.text)}</div>`).join(""):'<p class="m">No tenés notificaciones.</p>')}
 function vHis(){const l=D.audit.filter(a=>a.date.slice(0,7)===mo&&(!HF||a.by===HF)).sort((a,b)=>b.ts-a.ts).slice(0,150),us=[...new Set(D.audit.map(a=>a.by))];
  return`<div class="row"><h2 style="margin:0">Historial de cambios</h2><input type="month" value="${mo}" style="width:auto;margin:0" onchange="mo=this.value||mo;draw()"></div><select style="margin-top:10px" onchange="HF=this.value;draw()"><option value="">Todos los usuarios</option>${us.map(u=>`<option value="${u}"${HF===u?" selected":""}>${esc(un(u))}</option>`).join("")}</select>`+(l.map(a=>`<div class="c"><b>${esc(a.byName)}</b> <span class="m">${esc(a.role||"")}</span><div>${esc(a.action)} ${esc(a.entity)}: ${esc(a.text)}</div><div class="m">${fd(a.date)} ${new Date(a.ts).toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}</div></div>`).join("")||'<p class="m">No hay cambios en este mes.</p>')+(l.length>=150?'<p class="m">Se muestran los 150 más recientes.</p>':"")}
+let LF="";
+function vReg(){
+ const all=(D.leads||[]).slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+ const f=(LF||"").trim().toLowerCase();
+ const list=f?all.filter(l=>[l.name,l.biz,l.email,l.phone,l.city,l.prov].join(" ").toLowerCase().includes(f)):all;
+ const fecha=t=>{if(!t)return "-";const d=new Date(t);return d.toLocaleDateString("es-AR")+" "+d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})};
+ return `<div class="row"><h2 style="margin:0">📥 Registros del portal</h2><span class="chip ch-g">${all.length} en total</span></div>
+ <p class="m">Datos que deja cada cliente la primera vez que abre una app desde el portal.</p>
+ <input placeholder="Buscar por nombre, negocio, correo, celular o ciudad" value="${esc(LF)}" oninput="LF=this.value;draw()" style="margin-top:10px">
+ ${list.map(l=>{const msg="Hola "+l.name+", soy de Solmark. Recibimos tus datos para empezar con la app "+l.app+". ¿Te ayudo con la instalación?";return `<div class="c"><div class="row"><div style="min-width:0"><b>${esc(l.name)}</b>${l.biz?` <span class="m">· ${esc(l.biz)}</span>`:""}<div class="m">${l.email?esc(l.email):"Sin correo"}${l.phone?" · "+esc(l.phone):""}</div><div class="m">${esc(l.city||"")}${l.prov?", "+esc(l.prov):""} · ${esc(l.app||"-")} · ${fecha(l.createdAt)}</div></div><div style="text-align:right">${wa(l,msg)}${l.email?`<a class="btn s" href="mailto:${esc(l.email)}">Correo</a>`:""}${isAdm()?`<button class="d" onclick="delLead('${esc(l.id||"")}')">✕</button>`:""}</div></div></div>`}).join("")||`<p class="m">${all.length?"No hay registros que coincidan con la búsqueda.":"Todavía no hay registros."}</p>`}`;
+}
+function delLead(id){if(!id||!isAdm())return;if(!confirm("¿Eliminar este registro del portal?"))return;FB.delLead(id).then(()=>{D.leads=(D.leads||[]).filter(x=>x.id!==id);draw()}).catch(()=>alert("No se pudo eliminar el registro"))}
 function restoreKeys(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const x=JSON.parse(r.result),k=x.keys;if(!k)throw 0;
   if(k.ct){if(!confirm("Se van a reemplazar las claves actuales por las de la copia. ¿Seguir?"))return;KE=k;await FB.putKeys(KE);K=null;draw();alert("Claves restauradas. Desbloquealas con su frase secreta.");return}
   if(!k.priv||!k.pub)throw 0;const cur=(K||KE);if(!confirm("La clave de la copia empieza con "+k.pub.x.slice(0,8)+". Va a reemplazar la clave actual ("+(cur?cur.pub.x.slice(0,8):"ninguna")+"). ¿Seguir?"))return;const pw=askPw(true);if(!pw)return;K=k;await protect(pw)}catch(e){alert("El archivo no tiene claves válidas")}};r.readAsText(f);inp.value=""}
@@ -387,7 +399,7 @@ function draw(){const u=me();
  $("#nav").className=MO?"open":"";
  $("#nav").innerHTML=MODS.filter(m=>ok.includes(m[0])).map(m=>`<button class="${tab===m[0]?"on":""}" onclick="go('${m[0]}')">${m[1]}${bd[m[0]]?" ("+bd[m[0]]+")":""}</button>`).join("");
  $("#top").innerHTML=`<div class="row" style="flex-wrap:nowrap;width:100%"><div style="display:flex;align-items:center;gap:8px"><button id="mn" class="s" onclick="MO=!MO;draw()">☰</button><span onclick="go('res')" style="display:flex;align-items:center;gap:8px;cursor:pointer"><img src="icons/icon-192.png" width="30" height="30" alt=""><b>Solmark</b></span></div><div style="display:flex;align-items:center;gap:6px"><button class="s" onclick="go('aju')">👤 ${esc(u.name.split(" ")[0])}</button><button class="d" onclick="logout()">Salir</button></div></div>`;
- $("#app").innerHTML=(isAdm()?bkBar():"")+({res:vRes,cli:vCli,pag:vPag,ven:vVen,apl:vApl,gas:vGas,inf:vInf,his:vHis,tic:vTic,age:vAge,cla:vCla,usr:vUsr,aju:vAju}[tab]||(()=>'<p class="m">Tu cuenta no tiene módulos habilitados.</p>'))()}
+ $("#app").innerHTML=(isAdm()?bkBar():"")+({res:vRes,cli:vCli,pag:vPag,ven:vVen,apl:vApl,gas:vGas,inf:vInf,his:vHis,reg:vReg,tic:vTic,age:vAge,cla:vCla,usr:vUsr,aju:vAju}[tab]||(()=>'<p class="m">Tu cuenta no tiene módulos habilitados.</p>'))()}
 draw();if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script><script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -408,14 +420,15 @@ function save(){if(!U||!me())return;const c={clients:D.clients,pay:D.pay,tickets
  const st={cfg:D.cfg,tn:D.tn,rn:D.rn||0,paid:D.paid,lastBackup:D.lastBackup||""},a=jj(st);if(a!==S.state){S.state=a;W(doc(db,"config","state"),st)}
  if(isAdm()){const pm={perm:D.perm},b=jj(pm);if(b!==S.main){S.main=b;W(doc(db,"config","main"),pm)}}}
 const stop=()=>UN.splice(0).forEach(f=>f());
-function start(adm,boss,roles){const ov=roles.includes("Vendedor")&&!["Administrador","Socio","Supervisor","Soporte"].some(r=>roles.includes(r)),so=roles.includes("Soporte");stop();const L=(r,fn)=>UN.push(onSnapshot(r,fn,()=>{}));
- const feed=(k,ref)=>L(ref,sn=>{if(sn.metadata.hasPendingWrites)return;const a=sn.docs.map(d=>d.data());D[k]=a;S[k]=Object.fromEntries(a.map(x=>[x.id,jj(x)]));if(k==="apps"&&!a.length&&adm&&!sn.metadata.fromCache){D.apps=["Barbería","Gimnasio"].map(n=>({id:uid(),name:n,description:"",manual:"",link:"",prices:{}}));S.apps={};save()}draw()});
+function start(adm,boss,roles){const ov=roles.includes("Vendedor")&&!["Administrador","Socio","Supervisor","Soporte"].some(r=>roles.includes(r)),so=roles.includes("Soporte"),leadRole=roles.some(r=>["Administrador","Socio","Supervisor","Soporte"].includes(r));stop();const L=(r,fn)=>UN.push(onSnapshot(r,fn,()=>{}));
+ const feed=(k,ref)=>L(ref,sn=>{if(sn.metadata.hasPendingWrites)return;const a=sn.docs.map(d=>Object.assign({id:d.id},d.data()));D[k]=a;S[k]=Object.fromEntries(a.map(x=>[x.id,jj(x)]));if(k==="apps"&&!a.length&&adm&&!sn.metadata.fromCache){D.apps=["Barbería","Gimnasio"].map(n=>({id:uid(),name:n,description:"",manual:"",link:"",prices:{}}));S.apps={};save()}draw()});
  const qk=(k,f)=>ov?query(collection(db,k),where(f,"==",U)):collection(db,k);
  [["clients","sellerId"],["pay","sellerId"],["tickets","sellerId"],["agenda","userId"],["log","sellerId"],["reqs","vend"],["receipts","sellerId"]].forEach(([k,f])=>feed(k,qk(k,f)));
  for(const k of ["users","apps",...(boss?["exp"]:[])])feed(k,collection(db,k));
  feed("notifs",query(collection(db,"notifs"),where("to","==",U)));
  if(boss)feed("audit",query(collection(db,"audit"),orderBy("ts","desc"),limit(300)));else if(roles.includes("Supervisor"))feed("audit",query(collection(db,"audit"),where("sup","==",U)));
  feed("ledger",boss?collection(db,"ledger"):query(collection(db,"ledger"),where("uids","array-contains",U)));
+  if(leadRole)feed("leads",collection(db,"leads"));
  if(adm||so)L(collection(db,"hist"),sn=>{if(sn.metadata.hasPendingWrites)return;H=sn.docs.map(d=>d.data()).sort((a,b)=>(b.f+b.hid).localeCompare(a.f+a.hid));S.hist=Object.fromEntries(H.map(x=>[x.hid,jj(x)]));draw()});
  L(doc(db,"config","state"),s=>{if(s.metadata.hasPendingWrites||!s.exists())return;const d=s.data(),dc=DEF().cfg;D.cfg=Object.assign(dc,d.cfg||{});D.cfg.disc=Object.assign(DEF().cfg.disc,(d.cfg||{}).disc||{});D.tn=d.tn||0;D.rn=d.rn||0;D.paid=d.paid||{};D.lastBackup=d.lastBackup||"";S.state=jj({cfg:D.cfg,tn:D.tn,rn:D.rn||0,paid:D.paid,lastBackup:D.lastBackup});draw()});
  L(doc(db,"config","main"),s=>{if(s.metadata.hasPendingWrites||!s.exists())return;D.perm=s.data().perm||defPerm();S.main=jj({perm:D.perm});if(adm&&(D.perm._v||0)<4){for(const r of ["Supervisor","Vendedor","Soporte"])D.perm[r]=[...new Set([...(D.perm[r]||[]),"pag"])];D.perm._v=4;save()}draw()})}
@@ -425,7 +438,7 @@ async function enter(u){if(busy)return;U=u.uid;ST="load";draw();
   if(ad||pd.roles.includes("Soporte"))getDoc(doc(db,"keys","main")).then(s=>{KE=s.exists()?s.data():null;draw()}).catch(()=>{})}catch(e){ST="noacc";draw()}}
 function leave(){stop();U=null;ST="out";D=DEF();mig();H=[];KE=null;for(const k in S)delete S[k];try{K=JSON.parse(localStorage.getItem("gen_keys"))}catch(e){K=null}draw()}
 onAuthStateChanged(auth,u=>u?enter(u):leave());
-window.FB={save,signIn:(e,p)=>signInWithEmailAndPassword(auth,e,p),reset:e=>sendPasswordResetEmail(auth,e),out:()=>signOut(auth),async reauth(pw){const u=auth.currentUser;await reauthenticateWithCredential(u,EmailAuthProvider.credential(u.email,pw));return u},async setPass(c,n){await updatePassword(await this.reauth(c),n)},async setMail(c,e){await verifyBeforeUpdateEmail(await this.reauth(c),e)},putKeys:o=>setDoc(doc(db,"keys","main"),o),
+window.FB={save,signIn:(e,p)=>signInWithEmailAndPassword(auth,e,p),reset:e=>sendPasswordResetEmail(auth,e),out:()=>signOut(auth),delLead:id=>deleteDoc(doc(db,"leads",id)),async reauth(pw){const u=auth.currentUser;await reauthenticateWithCredential(u,EmailAuthProvider.credential(u.email,pw));return u},async setPass(c,n){await updatePassword(await this.reauth(c),n)},async setMail(c,e){await verifyBeforeUpdateEmail(await this.reauth(c),e)},putKeys:o=>setDoc(doc(db,"keys","main"),o),
  async mkUser(e,p){const sa=getAuth(initializeApp(CFG,"sec"+Date.now()));const r=await createUserWithEmailAndPassword(sa,e,p);await signOut(sa);return r.user.uid},
  async first(e,p,n){busy=true;try{const r=await createUserWithEmailAndPassword(auth,e,p),id=r.user.uid,b=writeBatch(db);b.set(doc(db,"users",id),{id,name:n,email:e,phone:"",roles:["Administrador"],active:true,auth:true});b.set(doc(db,"config","main"),{perm:defPerm()});b.set(doc(db,"config","state"),{cfg:D.cfg,tn:0,paid:{},lastBackup:""});await b.commit()}catch(x){busy=false;await signOut(auth);throw x}busy=false;await enter(auth.currentUser)}};
 </script></body></html>
